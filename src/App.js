@@ -1,24 +1,28 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import store from './store';
 
 function App() {
   return (
-    <div className="container">
-        <header>
-          <h1 className="text-center">
-            Veterinary patient administrator
-          </h1>
-        </header>
+    <Provider store={store}>
+      <div className="container">
+          <header>
+            <h1 className="text-center">
+              Veterinary patient administrator
+            </h1>
+          </header>
 
-        <div className="row mt-3">
-          <div className="col-md-6">
-            form here
-          </div>
+          <div className="row mt-3">
+            <div className="col-md-6">
+              form here
+            </div>
 
-          <div className="col-md-6">
-            list here
+            <div className="col-md-6">
+              list here
+            </div>
           </div>
-        </div>
-    </div>
+      </div>
+    </Provider>
   );
 }
 
