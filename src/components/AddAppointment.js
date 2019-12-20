@@ -1,12 +1,11 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 const AddAppointment = () => {
-    const { pet, setPet } = useState('');
-    const { owner, setOwner } = useState('');
-    const { date, setDate } = useState('');
-    const { time, setTime } = useState('');
-    const { symptoms, setSymptoms } = useState('');
+    const [ pet, setPet ] = useState('');
+    const [ owner, setOwner ] = useState('');
+    const [ date, setDate ] = useState('');
+    const [ time, setTime ] = useState('');
+    const [ symptoms, setSymptoms ] = useState('');
 
     return (
         <div className="card mt-5">
