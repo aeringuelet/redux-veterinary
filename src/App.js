@@ -1,6 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
+import AddAppointment from './components/AddAppointment';
 
 function App() {
   return (
@@ -14,7 +15,9 @@ function App() {
 
           <div className="row mt-3">
             <div className="col-md-6">
-              form here
+              <AddAppointment 
+                
+              />
             </div>
 
             <div className="col-md-6">
