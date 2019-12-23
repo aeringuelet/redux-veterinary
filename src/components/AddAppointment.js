@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addAppointmentAction } from '../actions/appointmentsActions';
+import uuid from 'uuid/v4';
+import { validateFormAction } from '../actions/validationActions';
 
 const AddAppointment = () => {
     const [ pet, setPet ] = useState('');
@@ -7,11 +11,44 @@ const AddAppointment = () => {
     const [ time, setTime ] = useState('');
     const [ symptoms, setSymptoms ] = useState('');
 
+    const dispatch = useDispatch();
+    const addNewAppointment = appointment => dispatch(addAppointmentAction(appointment))
+    const validateForm = error => dispatch(validateFormAction(error));
+
+    const error = useSelector( state => state.error );
+
+    const createAppointment = e => {
+        e.preventDefault();
+
+        if(pet.trim() === '' || owner.trim() === '' || date.trim() === '' || time.trim() === '' || symptoms.trim() === '') {
+            validateForm(true);
+            return;
+        }
+
+        validateForm(false);
+
+        addNewAppointment({
+            id: uuid(),
+            pet,
+            owner,
+            date,
+            time,
+            symptoms
+
+        })
+
+        setPet('');
+        setOwner('');
+        setDate('');
+        setTime('');
+        setSymptoms('');
+    }
+
     return (
         <div className="card mt-5">
             <div className="card-body">
                 <h2 className="card-title text-center mb-5">Add appointments here</h2>
-                <form>
+                <form onSubmit={createAppointment}>
                     <div className="form-group row">
                         <label className="col-sm-4 col-lg-2 col-form-label">Pet name</label>
                         <div className="col-sm-8 col-lg-10">
@@ -76,6 +113,7 @@ const AddAppointment = () => {
                     </div>
                 </form>
                
+               { error.error ? <div className="alert alert-danger text-center p2">All fields are mandatory</div> : null }
             </div>
         </div>
     );

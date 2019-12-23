@@ -2,6 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
 import AddAppointment from './components/AddAppointment';
+import AppointmentList from './components/AppointmentsList';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
             </div>
 
             <div className="col-md-6">
-              list here
+              <AppointmentList />
             </div>
           </div>
       </div>
